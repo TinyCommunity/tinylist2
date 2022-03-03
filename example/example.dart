@@ -1,5 +1,5 @@
 import 'dart:math' show Random;
-import 'package:trotter/trotter.dart';
+import 'package:tinylist2/tinylist2.dart';
 
 void main() {
   final rand = Random(),

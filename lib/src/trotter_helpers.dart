@@ -1,4 +1,4 @@
-part of trotter;
+part of tinylist2;
 
 /// Cache to store calculated factorials.
 Map<int, BigInt> _factCache = {};

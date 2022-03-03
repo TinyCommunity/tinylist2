@@ -7,7 +7,7 @@
 /// that are moderately analogous to lists containing all possible respective arrangements.
 ///
 
-library trotter;
+library tinylist2;
 
 import 'dart:math' show Random;
 import 'dart:typed_data' show ByteData;

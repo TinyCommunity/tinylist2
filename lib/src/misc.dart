@@ -1,4 +1,4 @@
-part of trotter;
+part of tinylist2;
 
 /// Splits string [x] into its characters.
 List<String> characters(String x) => x.split('');

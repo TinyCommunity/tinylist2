@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:trotter/trotter.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 dynamic main() async {
   final script = await File('generate-readme.dart').readAsLines();

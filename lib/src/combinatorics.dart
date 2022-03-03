@@ -1,4 +1,4 @@
-part of trotter;
+part of tinylist2;
 
 /// The abstract parent to the other classes defined in this library.
 abstract class Combinatorics<T> {
