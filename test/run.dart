@@ -1,65 +1,122 @@
+import 'package:test/test.dart';
 import 'package:trotter/trotter.dart';
 
 void main() {
-  {
-    print('\nCombinations...');
-    final bagOfItems = characters('abcde'),
-        combos = Combinations(3, bagOfItems);
-    for (final combo in combos()) {
-      print('$combo (${combos.indexOf(combo)})');
-    }
+  final bagOfItems = characters('abcde');
 
-    for (final combo in [
-      ['e', 'c', 'a'],
-      ['a', 'c', 'e']
-    ]) {
-      print('... $combo -> ${combos.indexOf(combo)}');
+  test(
+    "Combinations generates a pseudo-list",
+    () {
+      final combos = Combinations(3, bagOfItems);
+      for (final combo in combos()) {
+        print('$combo (${combos.indexOf(combo)})');
+      }
+      expect(
+        combos.indexOf(["a", "c", "e"]),
+        BigInt.from(4),
+      );
+      expect(
+        combos.indexOf(["e", "c", "a"]),
+        BigInt.from(4),
+      );
     }
-  }
+  );
 
-  {
-    print('\nPermutations...');
-    final bagOfItems = characters('abcde'), perms = Permutations(3, bagOfItems);
-    for (final perm in perms()) {
-      print('$perm (${perms.indexOf(perm)})');
+  test(
+    "Permutations generates a pseudo-list",
+    () {
+      final perms = Permutations(3, bagOfItems);
+      for (final perm in perms()) {
+        print('$perm (${perms.indexOf(perm)})');
+      }
+      expect(
+        perms.indexOf(["a", "c", "e"]),
+        BigInt.from(24),
+      );
+      expect(
+        perms.indexOf(["e", "c", "a"]),
+        BigInt.from(27),
+      );
     }
-  }
+  );
 
-  {
-    print('\nCompositions...');
-    final bagOfItems = characters('abcde'), comps = Compositions(3, bagOfItems);
-    for (final comp in comps()) {
-      print('$comp (${comps.indexOf(comp)})');
+  test(
+    "Compositions generates a pseudo-list",
+    () {
+      final compos = Compositions(3, bagOfItems);
+      for (final compo in compos()) {
+        print('$compo (${compos.indexOf(compo)})');
+      }
+      expect(
+        compos.indexOf(["a", "c", "e"]),
+        BigInt.from(11),
+      );
+      expect(
+        compos.indexOf(["e", "c", "a"]),
+        BigInt.from(11),
+      );
     }
-    for (final comp in [
-      ['e', 'c', 'a'],
-      ['a', 'c', 'e']
-    ]) {
-      print('... $comp -> ${comps.indexOf(comp)}');
-    }
-  }
+  );
 
-  {
-    print('\nAmalgams...');
-    final bagOfItems = characters('abcde'), amals = Amalgams(3, bagOfItems);
-    for (final amal in amals()) {
-      print('$amal (${amals.indexOf(amal)})');
+  test(
+    "Amalgams generates a pseudo-list",
+    () {
+      final amals = Amalgams(3, bagOfItems);
+      for (final amal in amals()) {
+        print('$amal (${amals.indexOf(amal)})');
+      }
+      expect(
+        amals.indexOf(["a", "c", "e"]),
+        BigInt.from(14),
+      );
+      expect(
+        amals.indexOf(["e", "c", "a"]),
+        BigInt.from(110),
+      );
     }
-  }
+  );
 
-  {
-    print('\nSubsets...');
-    final bagOfItems = characters('abcde'), subs = Subsets(bagOfItems);
-    for (final sub in subs()) {
-      print('$sub (${subs.indexOf(sub)})');
+  test(
+    "Subsets generates a pseudo-list",
+    () {
+      final subs = Subsets(bagOfItems);
+      for (final sub in subs()) {
+        print('$sub (${subs.indexOf(sub)})');
+      }
+      expect(
+        subs.indexOf(["c"]),
+        BigInt.from(4),
+      );
+      expect(
+        subs.indexOf(["a", "c", "e"]),
+        BigInt.from(21),
+      );
+      expect(
+        subs.indexOf(["a", "b", "c", "d", "e"]),
+        BigInt.from(31),
+      );
     }
-  }
+  );
 
-  {
-    print('\nCompounds...');
-    final bagOfItems = characters('abcde'), comps = Compounds(bagOfItems);
-    for (final comp in comps()) {
-      print('$comp (${comps.indexOf(comp)})');
+  test(
+    "Compounds generates a pseudo-list",
+    () {
+      final comps = Compounds(bagOfItems);
+      for (final comp in comps()) {
+        print('$comp (${comps.indexOf(comp)})');
+      }
+      expect(
+        comps.indexOf(["c"]),
+        BigInt.from(3),
+      );
+      expect(
+        comps.indexOf(["a", "c", "e"]),
+        BigInt.from(50),
+      );
+      expect(
+        comps.indexOf(["a", "b", "c", "d", "e"]),
+        BigInt.from(206),
+      );
     }
-  }
+  );
 }
