@@ -48,6 +48,15 @@ void main() {
           );
         },
       );
+      test(
+        "[]",
+        () {
+          expect(
+            combos[BigInt.from(4)],
+            ["a", "c", "e"],
+          );
+        },
+      );
     },
   );
 
@@ -92,6 +101,19 @@ void main() {
           expect(
             perms.contains(["a", "e", "g"]),
             false,
+          );
+        },
+      );
+      test(
+        "[]",
+        () {
+          expect(
+            perms[BigInt.from(24)],
+            ["a", "c", "e"],
+          );
+          expect(
+            perms[BigInt.from(27)],
+            ["e", "c", "a"],
           );
         },
       );
@@ -142,6 +164,15 @@ void main() {
           );
         },
       );
+      test(
+        "[]",
+        () {
+          expect(
+            compos[BigInt.from(11)],
+            ["a", "c", "e"],
+          );
+        },
+      );
     },
   );
 
@@ -186,6 +217,19 @@ void main() {
           expect(
             amals.contains(["a", "e", "g"]),
             false,
+          );
+        },
+      );
+      test(
+        "[]",
+        () {
+          expect(
+            amals[BigInt.from(14)],
+            ["a", "c", "e"],
+          );
+          expect(
+            amals[BigInt.from(110)],
+            ["e", "c", "a"],
           );
         },
       );
@@ -240,6 +284,23 @@ void main() {
           );
         },
       );
+      test(
+        "[]",
+        () {
+          expect(
+            subs[BigInt.from(4)],
+            ["c"],
+          );
+          expect(
+            subs[BigInt.from(21)],
+            ["a", "c", "e"],
+          );
+          expect(
+            subs[BigInt.from(31)],
+            ["a", "b", "c", "d", "e"],
+          );
+        },
+      );
     },
   );
 
@@ -288,6 +349,23 @@ void main() {
           expect(
             comps.contains(["a", "e", "g"]),
             false,
+          );
+        },
+      );
+      test(
+        "[]",
+        () {
+          expect(
+            comps[BigInt.from(3)],
+            ["c"],
+          );
+          expect(
+            comps[BigInt.from(50)],
+            ["a", "c", "e"],
+          );
+          expect(
+            comps[BigInt.from(206)],
+            ["a", "b", "c", "d", "e"],
           );
         },
       );
