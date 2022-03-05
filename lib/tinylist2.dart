@@ -12,7 +12,7 @@ library tinylist2;
 import 'dart:math' show Random;
 import 'dart:typed_data' show ByteData;
 
-part 'src/trotter_helpers.dart';
+part 'src/helpers.dart';
 part 'src/combinatorics.dart';
 part 'src/permutations.dart';
 part 'src/combinations.dart';
