@@ -1,4 +1,4 @@
-import 'package:trotter/trotter.dart';
+import 'package:tinylist2/tinylist2.dart';
 
 void main() {
   final permutations = Permutations(3, characters('abcd')),

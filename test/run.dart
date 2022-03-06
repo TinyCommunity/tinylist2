@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:trotter/trotter.dart';
+import 'package:tinylist2/tinylist2.dart';
 
 void main() {
   final bagOfItems = characters('abcde');

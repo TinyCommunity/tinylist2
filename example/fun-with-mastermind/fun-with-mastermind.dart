@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'package:trotter/trotter.dart';
+import 'package:tinylist2/tinylist2.dart';
 
 class Clue {
   Clue(this.blacks, this.whites);

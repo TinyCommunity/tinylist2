@@ -1,73 +1,44 @@
+# tinylist2
 
-![](https://bitbucket.org/ram6ler/dart_trotter/wiki/dart_trotter_banner.png)
+> `tinylist2` is a small library that simplifies working with meta-arrangements commonly encountered in combinatorics, such as arrangements of combinations and permutations.
 
-Welcome to `trotter`, a library that simplifies working with meta-arrangements commonly
-encountered in combinatorics such as arrangements of combinations and permutations.
+A frok of [trotter](https://github.com/ram6ler/dart-trotter) by [Richard Ambler](https://github.com/ram6ler)
 
-`trotter` gives the developer access to pseudo-lists that 'contain'
-all selections (combinations, permutations, etc.) of objects taken from a specified list of
-items.
+`tinylist2` gives the developer access to pseudo-lists that 'contain' all selections (combinations, permutations, etc.) of objects taken from a specified list of items.
 
-The order of arrangements is based on the the order produced by the  [Steinhaus–Johnson–Trotter algorithm](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm)
-for ordering permutations, which I have generalized to combinations and arrangements
-that allow for replacement after item selection.
+The order of arrangements is based on the the order produced by the  [Steinhaus–Johnson–Trotter algorithm](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm) for ordering permutations, which I have generalized to combinations and arrangements that allow for replacement after item selection.
 
-The pseudo-list classes available are:
-* Combinations.
-* Permutations.
-* Compositions (combinations with replacement).
-* Amalgams (permutations with replacement).
-* Subsets (combinations of unspecified size).
-* Compounds (permutations of unspecified size).
+The following pseudo-list classes are available:
+* Combinations
+* Permutations
+* Compositions (combinations with replacement)
+* Amalgams (permutations with replacement)
+* Subsets (combinations of unspecified size)
+* Compounds (permutations of unspecified size)
 
-# Demos
-
-To see `trotter` in action:
-
-* Play [Falco Shapes](https://falco-shapes.netlify.com/),
-a little puzzle based on Marsha Falco's game of *Set*.
-
-* Explore the *huge* number of permutations of letters of the alphabet with [Permutation Products](https://permutation-products.netlify.com/).
-
-# Using `trotter`
-
-Include the following dependency in pubspec.yaml:
-
-```text
-trotter: ^1.1.0
-```
-
-Then, to import the library:
+## Getting Started
 
 ```dart
-import 'package:trotter/trotter.dart';
+import 'package:tinylist2/tinylist2.dart';
 ```
 
-## The basic classes
+## Classes
 
 ### Combinations
 
-A *combination* is a selection of items for which order is *not*
-important and items are *not* replaced after being selected.
+A *combination* is a selection of items for which order is *not* important and items are *not* replaced after being selected.
 
 The `Combinations` class 'contains' all combinations of a set of items.
 
-
-**Example:**
-
 ```dart
-    final bagOfItems = characters('abcde'),
-        combos = Combinations(3, bagOfItems);
-    for (final combo in combos()) {
-      print(combo);
-    }
+final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
+final combos = Combinations(3, bagOfItems);
+for (final combo in combos()) {
+  print(combo);
+}
 ```
 
-**Output:**
-
----
 ```
-
 [a, b, c]
 [a, b, d]
 [a, b, e]
@@ -78,32 +49,24 @@ The `Combinations` class 'contains' all combinations of a set of items.
 [b, c, e]
 [b, d, e]
 [c, d, e]
+...
 ```
----
-
 
 ### Permutations
 
-A *permutation* is a selection of items for which order *is* important
-and items are *not* replaced after being selected.
+A *permutation* is a selection of items for which order *is* important and items are *not* replaced after being selected.
 
 The `Permutations` class 'contains' all permutations of a set of items.
 
-
-**Example:**
-
 ```dart
-    final bagOfItems = characters('abcde'), perms = Permutations(3, bagOfItems);
-    for (final perm in perms()) {
-      print(perm);
-    }
+final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
+final perms = Permutations(3, bagOfItems);
+for (final perm in perms()) {
+  print(perm);
+}
 ```
 
-**Output:**
-
----
 ```
-
 [a, b, c]
 [a, c, b]
 [c, a, b]
@@ -164,43 +127,26 @@ The `Permutations` class 'contains' all permutations of a set of items.
 [e, d, c]
 [d, e, c]
 [d, c, e]
+...
 ```
----
 
-
-(Notice that this library arranges permutations similarly to the way the
-[Steinhaus-Johnson-Trotter](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm)
-algorithm arranges permutations. In fact, if we get the permutations of
-*all* the specified items, e.g. `var perms = Permutations(bagOfItems.length, bagOfItems);`
-in the above code, the arrangement of permutations is exactly what would
-have resulted from applying the S-J-T algorithm. The algorithms in this library
-have an advantage in that they do not iterate through all k - 1 permutations in
-order to determint the kth permutation, however.)
+Note: that this library arranges permutations similarly to the way [Steinhaus-Johnson-Trotter](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm) algorithm arranges permutations. In fact, if we get the permutations of *all* the specified items, e.g. `var perms = Permutations(bagOfItems.length, bagOfItems);` in the above code, the arrangement of permutations is exactly what would have resulted from applying the S-J-T algorithm. The algorithms in this library have an advantage in that they do not iterate through all k - 1 permutations in order to determint the kth permutation, however.
 
 ### Compositions
 
-A *composition* (or combination with replacement) is a selection of items for
-which order is *not* important and items *are* replaced after being selected.
+A *composition* (or combination with replacement) is a selection of items for which order is *not* important and items *are* replaced after being selected.
 
 The `Compositions` class 'contains' all compositions of a set of items.
 
-Here are all the compositions of three items taken from a bag of five items:
-
-
-**Example:**
-
 ```dart
-    final bagOfItems = characters('abcde'), comps = Compositions(3, bagOfItems);
-    for (final comp in comps()) {
-      print(comp);
-    }
+final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
+final comps = Compositions(3, bagOfItems);
+for (final comp in comps()) {
+  print(comp);
+}
 ```
 
-**Output:**
-
----
 ```
-
 [a, a, a]
 [a, a, b]
 [a, a, c]
@@ -236,32 +182,24 @@ Here are all the compositions of three items taken from a bag of five items:
 [d, d, e]
 [d, e, e]
 [e, e, e]
+...
 ```
----
-
 
 ### Amalgams
 
-An *amalgam* (or permutation with replacement) is a selection of items for
-which order *is* important and items *are* replaced after being selected.
+An *amalgam* (or permutation with replacement) is a selection of items for which order *is* important and items *are* replaced after being selected.
 
 The `Amalgams` class 'contains' all amalgams of a set of items.
 
-
-**Example:**
-
 ```dart
-    final bagOfItems = characters('abcde'), amals = Amalgams(3, bagOfItems);
-    for (final amal in amals()) {
-      print(amal);
-    }
+final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
+final amals = Amalgams(3, bagOfItems);
+for (final amal in amals()) {
+  print(amal);
+}
 ```
 
-**Output:**
-
----
 ```
-
 [a, a, a]
 [a, a, b]
 [a, a, c]
@@ -387,33 +325,24 @@ The `Amalgams` class 'contains' all amalgams of a set of items.
 [e, e, c]
 [e, e, d]
 [e, e, e]
+...
 ```
----
-
 
 ### Subsets
 
-A *subset* (or combination of unspecified length) is a selection of items for
-which order is *not* important, items are *not* replaced and the number of
-items is not specified.
+A *subset* (or combination of unspecified length) is a selection of items for which order is *not* important, items are *not* replaced and the number of items is not specified.
 
 The `Subsets` class 'contains' all subsets of a set of items.
 
-
-**Example:**
-
 ```dart
-    final bagOfItems = characters('abcde'), subs = Subsets(bagOfItems);
-    for (final sub in subs()) {
-      print(sub);
-    }
+final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
+final subs = Subsets(bagOfItems);
+for (final sub in subs()) {
+  print(sub);
+}
 ```
 
-**Output:**
-
----
 ```
-
 []
 [a]
 [b]
@@ -446,33 +375,24 @@ The `Subsets` class 'contains' all subsets of a set of items.
 [a, c, d, e]
 [b, c, d, e]
 [a, b, c, d, e]
+...
 ```
----
-
 
 ### Compounds
 
-A *compound* (or permutation of unspecified length) is a selection of items for
-which order *is* important, items are *not* replaced and the number of
-items is not specified.
+A *compound* (or permutation of unspecified length) is a selection of items for which order *is* important, items are *not* replaced and the number of items is not specified.
 
 The `Compounds` class 'contains' all compounds of a set of items.
 
-
-**Example:**
-
 ```dart
-    final bagOfItems = characters('abcde'), comps = Compounds(bagOfItems);
-    for (final comp in comps()) {
-      print(comp);
-    }
+final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
+final comps = Compounds(bagOfItems);
+for (final comp in comps()) {
+  print(comp);
+}
 ```
 
-**Output:**
-
----
 ```
-
 []
 [a]
 [b]
@@ -799,116 +719,64 @@ The `Compounds` class 'contains' all compounds of a set of items.
 [b, a, e, c, d]
 [b, a, c, e, d]
 [b, a, c, d, e]
+...
 ```
----
-
 
 ## Large indices
 
-Arrangement numbers often grow very quickly. For example, consider the number
-of 10-permutations of the letters of the alphabet:
+Arrangement numbers often grow very quickly. Due to large numbers in index and length, they cannot be represented using a 64 bit `int`, `BigInt` was implemeneted instead.
 
-
-**Example:**
+For example, consider the number of 10-permutations of the letters of the alphabet:
 
 ```dart
-    final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
-        perms = Permutations(10, largeBagOfItems);
-    print(perms);
+final List<String> largeBagOfItems = <String>["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+final perms = Permutations(10, largeBagOfItems);
+print(perms);
+final List<String> permutationOfInterest = <String>["a", "l", "g", "o", "r", "i", "t", "h", "m", "s"];
+BigInt index = perms.indexOf(permutationOfInterest);
+print('The index of $permutationOfInterest is $index.');
+print('perms[$index]: ${perms[index]}');
 ```
 
-**Output:**
-
----
 ```
-
 Pseudo-list containing all 19275223968000 10-permutations of items from [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
-```
----
-
-
-Wow! That's a lot of permutations! Don't iterate over them all!
-
-Notice that the word `algorithms` is a 10-permutation of the
-letters of the alphabet. What is the index of this permutation
-in our list of permutations?
-
-
-**Example:**
-
-```dart
-    final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
-        perms = Permutations(10, largeBagOfItems),
-        permutationOfInterest = characters('algorithms'),
-        index = perms.indexOf(permutationOfInterest);
-    print('The index of $permutationOfInterest is $index.');
-    print('perms[$index]: ${perms[index]}');
-```
-
-**Output:**
-
----
-```
-
 The index of [a, l, g, o, r, i, t, h, m, s] is 6831894769563.
 perms[6831894769563]: [a, l, g, o, r, i, t, h, m, s]
 ```
----
 
+Wow! That's a lot of permutations! Don't iterate over them all! That's almost seven trillion!
 
-Wow! That's almost seven trillion! Luckily we didn't need to
-perform that search using brute force! (Take that, Mathematica!)
-
-Since we sometimes can be working with indexes so large
-they cannot be represented using a 64 bit `int`, indexing and length
-arem implemented using `BigInt`.
-
-
-**Example:**
+Luckily we didn't need to perform that search using brute force! (Take that, Mathematica!)
 
 ```dart
-    final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
-        comps = Compounds(largeBagOfItems);
-    print('There are ${comps.length} compounds of these letters!');
-    BigInt lastCompoundIndex = comps.length - BigInt.one;
-    print('The last compound is ${comps[lastCompoundIndex]}.');
+final comps = Compounds(largeBagOfItems);
+print('There are ${comps.length} compounds of these letters!');
+BigInt lastCompoundIndex = comps.length - BigInt.one;
+print('The last compound is ${comps[lastCompoundIndex]}.');
 ```
 
-**Output:**
-
----
 ```
-
 There are 1096259850353149530222034277 compounds of these letters!
 The last compound is [b, a, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
 ```
----
 
+Unless you're immortal, don't use `comps().last` to access the last compound in the previous example!
 
-Unless you're immortal, don't use `comps().last` to
-access the last compound in the previous example!
+## Extensions
 
-## Syntactic sugar
+### `List<T>`
 
-### Lists
-
-`trotter` provides extensions that allow us to generate combinatoric
+`tinylist2` provides extensions that allow us to generate combinatoric
 arrangements directly from lists...
 
-**Example:**
-
 ```dart
-    final subsets = [1, 2, 3, 4, 5].subsets();
-    for (final subset in subsets()) {
-      print(subset);
-    }
+final subsets = [1, 2, 3, 4, 5].subsets();
+for (final subset in subsets()) {
+  print(subset);
+}
 ```
 
-**Output:**
-
----
 ```
-
 []
 [1]
 [2]
@@ -942,28 +810,20 @@ arrangements directly from lists...
 [2, 3, 4, 5]
 [1, 2, 3, 4, 5]
 ```
----
 
-
-### Strings
+### `String`
 
 ... and strings, in which case it assumes we mean arrangements of the
 characters in the string.
 
-**Example:**
-
 ```dart
-    final subsets = 'abcde'.subsets();
-    for (final subset in subsets()) {
-      print(subset);
-    }
+final subsets = 'abcde'.subsets();
+for (final subset in subsets()) {
+  print(subset);
+}
 ```
 
-**Output:**
-
----
 ```
-
 []
 [a]
 [b]
@@ -997,12 +857,3 @@ characters in the string.
 [b, c, d, e]
 [a, b, c, d, e]
 ```
----
-
-
-
-`trotter` was written by [Richard Ambler](mailto:rambler@wya.top).
-
-Thanks for your interest in this library. Please file any bugs, issues
-and suggestions [here](https://github.com/ram6ler/dart-trotter/issues).
-

@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:trotter/trotter.dart';
+import 'package:tinylist2/tinylist2.dart';
 
 class Arrangement {
   Arrangement(this.combinatorics, this.html);

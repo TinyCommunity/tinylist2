@@ -1,4 +1,4 @@
-part of trotter;
+part of tinylist2;
 
 /// A storage wrapper for a combinatorics instance.
 ///
