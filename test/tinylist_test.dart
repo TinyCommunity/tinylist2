@@ -2,14 +2,14 @@ import 'package:test/test.dart';
 import 'package:tinylist2/tinylist2.dart';
 
 void main() {
-  final bagOfItems = characters('abcde');
+  final bagOfItems = <String>["a", "b", "c", "d", "e"];
 
   group(
-    "Combinations",
+    "TinyList.combination()",
     () {
-      final combos = Combinations(3, bagOfItems);
+      final TinyList combos = TinyList.combination(bagOfItems, 3);
       /*
-      for (final combo in combos()) {
+      for (final combo in combos.getRange(BigInt.zero, combos.length)) {
         print('$combo (${combos.indexOf(combo)})');
       }
       */
@@ -57,15 +57,24 @@ void main() {
           );
         },
       );
+      test(
+        ".sublist()",
+        () {
+          expect(
+            combos.sublist(BigInt.from(4), BigInt.from(5)),
+            [["a", "c", "e"]],
+          );
+        },
+      );
     },
   );
 
   group(
-    "Permutations",
+    "TinyList.permutation()",
     () {
-      final perms = Permutations(3, bagOfItems);
+      final TinyList perms = TinyList.permutation(bagOfItems, 3);
       /*
-      for (final perm in perms()) {
+      for (final perm in perms.getRange(BigInt.zero, perms.length)) {
         print('$perm (${perms.indexOf(perm)})');
       }
       */
@@ -117,15 +126,28 @@ void main() {
           );
         },
       );
+      test(
+        ".sublist()",
+        () {
+          expect(
+            perms.sublist(BigInt.from(24), BigInt.from(25)),
+            [["a", "c", "e"]],
+          );
+          expect(
+            perms.sublist(BigInt.from(27), BigInt.from(28)),
+            [["e", "c", "a"]],
+          );
+        },
+      );
     },
   );
 
   group(
-    "Compositions",
+    "TinyList.composition()",
     () {
-      final compos = Compositions(3, bagOfItems);
+      final TinyList compos = TinyList.composition(bagOfItems, 3);
       /*
-      for (final compo in compos()) {
+      for (final compo in compos.getRange(BigInt.zero, compos.length)) {
         print('$compo (${compos.indexOf(compo)})');
       }
       */
@@ -173,15 +195,24 @@ void main() {
           );
         },
       );
+      test(
+        ".sublist()",
+        () {
+          expect(
+            compos.sublist(BigInt.from(11), BigInt.from(12)),
+            [["a", "c", "e"]],
+          );
+        },
+      );
     },
   );
 
   group(
-    "Amalgams",
+    "TinyList.amalgam()",
     () {
-      final amals = Amalgams(3, bagOfItems);
+      final TinyList amals = TinyList.amalgam(bagOfItems, 3);
       /*
-      for (final amal in amals()) {
+      for (final amal in amals.getRange(BigInt.zero, amals.length)) {
         print('$amal (${amals.indexOf(amal)})');
       }
       */
@@ -233,18 +264,31 @@ void main() {
           );
         },
       );
+      test(
+        ".sublist()",
+        () {
+          expect(
+            amals.sublist(BigInt.from(14), BigInt.from(15)),
+            [["a", "c", "e"]],
+          );
+          expect(
+            amals.sublist(BigInt.from(110), BigInt.from(111)),
+            [["e", "c", "a"]],
+          );
+        },
+      );
     },
   );
 
   group(
-    "Subsets",
+    "TinyList.subset()",
     () {
-      final subs = Subsets(bagOfItems);
-      /*
-      for (final sub in subs()) {
+      final TinyList subs = TinyList.subset(bagOfItems);
+      
+      for (final sub in subs.getRange(BigInt.zero, subs.length)) {
         print('$sub (${subs.indexOf(sub)})');
       }
-      */
+      
       test(
         ".length",
         () {
@@ -301,15 +345,32 @@ void main() {
           );
         },
       );
+      test(
+        ".sublist()",
+        () {
+          expect(
+            subs.sublist(BigInt.from(4), BigInt.from(5)),
+            [["c"]],
+          );
+          expect(
+            subs.sublist(BigInt.from(21), BigInt.from(22)),
+            [["a", "c", "e"]],
+          );
+          expect(
+            subs.sublist(BigInt.from(31), BigInt.from(32)),
+            [["a", "b", "c", "d", "e"]],
+          );
+        },
+      );
     },
   );
 
   group(
-    "Compounds",
+    "TinyList.compound()",
     () {
-      final comps = Compounds(bagOfItems);
+      final TinyList comps = TinyList.compound(bagOfItems);
       /*
-      for (final comp in comps()) {
+      for (final comp in comps.getRange(BigInt.zero, comps.length)) {
         print('$comp (${comps.indexOf(comp)})');
       }
       */
@@ -366,6 +427,23 @@ void main() {
           expect(
             comps[BigInt.from(206)],
             ["a", "b", "c", "d", "e"],
+          );
+        },
+      );
+      test(
+        ".sublist()",
+        () {
+          expect(
+            comps.sublist(BigInt.from(3), BigInt.from(4)),
+            [["c"]],
+          );
+          expect(
+            comps.sublist(BigInt.from(50), BigInt.from(51)),
+            [["a", "c", "e"]],
+          );
+          expect(
+            comps.sublist(BigInt.from(206), BigInt.from(207)),
+            [["a", "b", "c", "d", "e"]],
           );
         },
       );
