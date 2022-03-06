@@ -179,9 +179,3 @@ class TinyList<T> {
   String toString() =>
       "Pseudo-list containing all $_length arrangements ($_r- of items from $originalItems)";
 }
-
-void main() {
-  final combo1 = TinyList.combination(['a', 'b', 'c', 'd', 'e'], 3);
-  final combo2 = TinyList.combination(['a', 'b', 'c', 'd', 'e'], 3);
-  print(combo1 == combo2);
-}
