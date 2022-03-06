@@ -10,4 +10,7 @@ environment:
 dependencies:
   lint: ^1.5.3
 
+dev_dependencies:
+  test:
+
 strong-mode: true
