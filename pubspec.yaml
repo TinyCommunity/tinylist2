@@ -1,8 +1,13 @@
-name: trotter
-version: 2.0.0-dev.1
+name: tinylist2
 description: Class definitions for pseudo-lists that simplify working with structures commonly encountered in combinatorics such as permutations, combinations and subsets.
-homepage: https://www.bitbucket.org/ram6ler/dart_trotter/wiki/Home
-issue_tracker: https://bitbucket.org/ram6ler/dart_trotter/issues
+version: 2.0.0
+
+homepage: https://github.com/calvintam236/tinylist2
+
 environment:
-  sdk: '>=2.12.0-0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  lint: ^1.5.3
+
 strong-mode: true

@@ -7,12 +7,12 @@
 /// that are moderately analogous to lists containing all possible respective arrangements.
 ///
 
-library trotter;
+library tinylist2;
 
 import 'dart:math' show Random;
 import 'dart:typed_data' show ByteData;
 
-part 'src/trotter_helpers.dart';
+part 'src/helpers.dart';
 part 'src/combinatorics.dart';
 part 'src/permutations.dart';
 part 'src/combinations.dart';
@@ -21,4 +21,4 @@ part 'src/compositions.dart';
 part 'src/subsets.dart';
 part 'src/compounds.dart';
 part 'src/storage.dart';
-part 'src/misc.dart';
+part 'src/extensions.dart';

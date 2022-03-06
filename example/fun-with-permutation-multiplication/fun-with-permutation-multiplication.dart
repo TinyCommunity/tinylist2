@@ -1,5 +1,5 @@
 import 'dart:io' show stdout, stdin;
-import 'package:trotter/trotter.dart';
+import 'package:tinylist2/tinylist2.dart';
 
 final indices = List<int>.generate(10, (i) => i);
 
