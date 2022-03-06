@@ -21,4 +21,4 @@ part 'src/compositions.dart';
 part 'src/subsets.dart';
 part 'src/compounds.dart';
 part 'src/storage.dart';
-part 'src/misc.dart';
+part 'src/extensions.dart';

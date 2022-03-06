@@ -1,11 +1,5 @@
 part of tinylist2;
 
-/// Splits string [x] into its characters.
-List<String> characters(String x) => x.split('');
-
-/// Creates a string from the characters in [x].
-String string(List<String> x) => x.join('');
-
 /// Convenience methods to create combinatorics instances from
 /// lists of strings.
 extension TrotterListStringCandy on List<String> {
