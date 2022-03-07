@@ -1,16 +1,16 @@
 import 'dart:io' show stdout, stdin;
 import 'package:tinylist2/tinylist2.dart';
 
-final indices = List<int>.generate(10, (i) => i);
+final List<int> indices = List<int>.generate(10, (i) => i);
 
 void main() {
-  final permutations = indices.permutations();
+  final TinyList<int> permutations = indices.permutation(indices.length);
 
   print("There are ${permutations.length} permutations of the digits 0-9.");
   print(
       "\nHere are the first, middle and last ten in the Johnson-Trotter ordering:\n");
-
   print(row("Index", "Permutation", "Cyclic Notation", 10, 35));
+
   void table(BigInt start, BigInt end, [BigInt? mark]) {
     for (BigInt i = start; i < end; i += BigInt.one) {
       print("  " +
@@ -22,34 +22,44 @@ void main() {
 
   table(BigInt.zero, BigInt.from(10));
   print("...");
-  table(permutations.length ~/ BigInt.from(2),
-      permutations.length ~/ BigInt.from(2) + BigInt.from(10));
-  print("...");
-  table(permutations.length - BigInt.from(10), permutations.length);
 
+  table(
+    permutations.length ~/ BigInt.from(2),
+    permutations.length ~/ BigInt.from(2) + BigInt.from(10),
+  );
+  print("...");
+
+  table(
+    permutations.length - BigInt.from(10),
+    permutations.length,
+  );
   stdout.write("\nInput permutation p in cyclic notation: ");
-
   final p = interpret();
-
   print("...");
-  table(permutations.indexOf(p) - BigInt.from(5),
-      permutations.indexOf(p) + BigInt.from(5), permutations.indexOf(p));
 
+  table(
+    permutations.indexOf(p) - BigInt.from(5),
+    permutations.indexOf(p) + BigInt.from(5),
+    permutations.indexOf(p),
+  );
   stdout.write("\nInput permutation q in cyclic notation: ");
-
   final q = interpret();
-
   print("...");
-  table(permutations.indexOf(q) - BigInt.from(5),
-      permutations.indexOf(q) + BigInt.from(5), permutations.indexOf(q));
 
+  table(
+    permutations.indexOf(q) - BigInt.from(5),
+    permutations.indexOf(q) + BigInt.from(5),
+    permutations.indexOf(q),
+  );
   final prod = product(p, q);
-
-  print("The product of p and q is ${cyclic(product(p, q))}:");
-
+  print("\nThe product of p and q is ${cyclic(product(p, q))}:");
   print("...");
-  table(permutations.indexOf(prod) - BigInt.from(5),
-      permutations.indexOf(prod) + BigInt.from(5), permutations.indexOf(prod));
+
+  table(
+    permutations.indexOf(prod) - BigInt.from(5),
+    permutations.indexOf(prod) + BigInt.from(5),
+    permutations.indexOf(prod),
+  );
 }
 
 String row(String col1, String col2, String col3, int w1, int w2) =>
@@ -60,12 +70,12 @@ List<int> interpret() {
   final split = permutation!
       .split(RegExp(r'[^0-9]'))
       .where((string) => string.isNotEmpty);
-  var result = List<int>.from(indices);
+  List<int> result = List<int>.from(indices);
   if (split.isNotEmpty) {
     for (final string in split) {
-      final digits = characters(string).map((x) => int.parse(x)).toList(),
-          length = digits.length;
-      for (var i = 0; i < length; i++) {
+      final List<int> digits = string.split("").map((x) => int.parse(x)).toList();
+      final int length = digits.length;
+      for (int i = 0; i < length; i++) {
         result[digits[i]] = digits[(i + 1) % length];
       }
     }
@@ -74,8 +84,9 @@ List<int> interpret() {
 }
 
 String cyclic(List<int> permutation) {
-  var digits = <int>{}, buffer = StringBuffer();
-  for (var i = 0; i < 10; i++) {
+  Set<int> digits = <int>{};
+  var buffer = StringBuffer();
+  for (int i = 0; i < 10; i++) {
     buffer.write('(');
     var j = i;
     while (!digits.contains(j)) {
@@ -91,8 +102,8 @@ String cyclic(List<int> permutation) {
 }
 
 List<int> product(List<int> p, List<int> q) {
-  var result = List<int>.from(indices);
-  for (var i = 0; i < 10; i++) {
+  List<int> result = List<int>.from(indices);
+  for (int i = 0; i < 10; i++) {
     result[i] = p[q[i]];
   }
   return result;
