@@ -15,10 +15,10 @@ class TinyList<T> {
     originalItems = List<T>.unmodifiable(items);
     _r = r;
     if (_r! < 0 || _r! > originalItems.length) {
-      throw Exception('Cannot take $_r! items from List of ${originalItems.length} items.');
+      throw RangeError.range(_r!, 0, originalItems.length, "r");
     }
     if (!isListUnique(originalItems)) {
-      throw Exception('Items are not unique.');
+      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
     }
     _length = nCr(originalItems.length, _r!);
     _operatorSubscriptRef = (BigInt index) => combination(adjustedIndex(index, _length), _r!, originalItems);
@@ -33,10 +33,10 @@ class TinyList<T> {
     originalItems = List<T>.unmodifiable(items);
     _r = r;
     if (_r! < 0 || _r! > originalItems.length) {
-      throw Exception('Cannot take $_r! items from List of ${originalItems.length} items.');
+      throw RangeError.range(_r!, 0, originalItems.length, "r");
     }
     if (!isListUnique(originalItems)) {
-      throw Exception('Items are not unique.');
+      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
     }
     _length = nPr(originalItems.length, _r!);
     _operatorSubscriptRef = (BigInt index) => permutation(adjustedIndex(index, _length), _r!, originalItems);
@@ -51,10 +51,10 @@ class TinyList<T> {
     originalItems = List<T>.unmodifiable(items);
     _r = r;
     if (_r! < 0) {
-      throw Exception('Cannot take $_r! items from List of ${originalItems.length} items.');
+      throw RangeError.range(_r!, 0, null, "r");
     }
     if (!isListUnique(originalItems)) {
-      throw Exception('Items are not unique.');
+      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
     }
     _length = nCr(originalItems.length + _r! - 1, _r!);
     _operatorSubscriptRef = (BigInt index) => composition(adjustedIndex(index, _length), _r!, originalItems);
@@ -70,10 +70,10 @@ class TinyList<T> {
     originalItems = List<T>.unmodifiable(items);
     _r = r;
     if (_r! < 0) {
-      throw Exception('Cannot take $_r! items from List of ${originalItems.length} items.');
+      throw RangeError.range(_r!, 0, null, "r");
     }
     if (!isListUnique(originalItems)) {
-      throw Exception('Items are not unique.');
+      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
     }
     _length = BigInt.from(originalItems.length).pow(_r!);
     _operatorSubscriptRef = (BigInt index) => amalgam(adjustedIndex(index, _length), _r!, originalItems);
@@ -88,7 +88,7 @@ class TinyList<T> {
     originalItems = List<T>.unmodifiable(items);
     _r = null;
     if (!isListUnique(originalItems)) {
-      throw Exception('Items are not unique.');
+      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
     }
     _length = BigInt.one << originalItems.length;
     _operatorSubscriptRef = (BigInt index) => subset(adjustedIndex(index, _length), originalItems);
@@ -104,7 +104,7 @@ class TinyList<T> {
     originalItems = List<T>.unmodifiable(items);
     _r = null;
     if (!isListUnique(originalItems)) {
-      throw Exception('Items are not unique.');
+      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
     }
     _length = List<BigInt>.generate(
       items.length + 1,
