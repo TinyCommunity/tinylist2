@@ -160,9 +160,10 @@ class TinyList<T> {
 
   Iterable<List<T>> getRange(BigInt start, BigInt end) sync* {
     end = _checkValidRange(start, end);
-    for (BigInt index = start; adjustedIndex(index, _length) != adjustedIndex(end, _length); index += BigInt.one) {
-      yield this[adjustedIndex(index, _length)];
-    }
+    BigInt index = start;
+    do {
+      yield this[adjustedIndex(index += BigInt.one, _length)];
+    } while (adjustedIndex(index, _length) != adjustedIndex(end, _length));
   }
 /*
   @override
