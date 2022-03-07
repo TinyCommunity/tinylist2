@@ -2,12 +2,12 @@ import 'package:test/test.dart';
 import 'package:tinylist2/tinylist2.dart';
 
 void main() {
-  final bagOfItems = <String>["a", "b", "c", "d", "e"];
+  final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
 
   group(
     "TinyList.combination()",
     () {
-      final TinyList combos = TinyList.combination(bagOfItems, 3);
+      final TinyList<String> combos = TinyList.combination(bagOfItems, 3);
       /*
       for (final combo in combos.getRange(BigInt.zero, combos.length)) {
         print('$combo (${combos.indexOf(combo)})');
@@ -72,7 +72,7 @@ void main() {
   group(
     "TinyList.permutation()",
     () {
-      final TinyList perms = TinyList.permutation(bagOfItems, 3);
+      final TinyList<String> perms = TinyList.permutation(bagOfItems, 3);
       /*
       for (final perm in perms.getRange(BigInt.zero, perms.length)) {
         print('$perm (${perms.indexOf(perm)})');
@@ -145,7 +145,7 @@ void main() {
   group(
     "TinyList.composition()",
     () {
-      final TinyList compos = TinyList.composition(bagOfItems, 3);
+      final TinyList<String> compos = TinyList.composition(bagOfItems, 3);
       /*
       for (final compo in compos.getRange(BigInt.zero, compos.length)) {
         print('$compo (${compos.indexOf(compo)})');
@@ -210,7 +210,7 @@ void main() {
   group(
     "TinyList.amalgam()",
     () {
-      final TinyList amals = TinyList.amalgam(bagOfItems, 3);
+      final TinyList<String> amals = TinyList.amalgam(bagOfItems, 3);
       /*
       for (final amal in amals.getRange(BigInt.zero, amals.length)) {
         print('$amal (${amals.indexOf(amal)})');
@@ -283,12 +283,12 @@ void main() {
   group(
     "TinyList.subset()",
     () {
-      final TinyList subs = TinyList.subset(bagOfItems);
-      
+      final TinyList<String> subs = TinyList.subset(bagOfItems);
+      /*
       for (final sub in subs.getRange(BigInt.zero, subs.length)) {
         print('$sub (${subs.indexOf(sub)})');
       }
-      
+      */
       test(
         ".length",
         () {
@@ -368,7 +368,7 @@ void main() {
   group(
     "TinyList.compound()",
     () {
-      final TinyList comps = TinyList.compound(bagOfItems);
+      final TinyList<String> comps = TinyList.compound(bagOfItems);
       /*
       for (final comp in comps.getRange(BigInt.zero, comps.length)) {
         print('$comp (${comps.indexOf(comp)})');
