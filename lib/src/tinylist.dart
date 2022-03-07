@@ -162,8 +162,8 @@ class TinyList<T> {
     end = _checkValidRange(start, end);
     BigInt index = start;
     do {
-      yield this[adjustedIndex(index += BigInt.one, _length)];
-    } while (adjustedIndex(index, _length) != adjustedIndex(end, _length));
+      yield this[adjustedIndex(index, _length)];
+    } while (adjustedIndex(index += BigInt.one, _length) != adjustedIndex(end, _length));
   }
 /*
   @override
