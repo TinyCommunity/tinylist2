@@ -31,14 +31,14 @@ bool itemsExistInUniversal<T>(List<T> items, List<T> universal) =>
 
 // Gives `k`th permutation in the ordered list of permutations of items taken from `items`.
 List<T> permutationWorker<T>(BigInt k, List<T> items) {
-  int n = items.length;
+  final int n = items.length;
   if (n <= 1) {
     return items;
   }
-  BigInt biN = BigInt.from(n);
-  BigInt group = k ~/ biN;
-  BigInt mod = k % biN;
-  BigInt position = group % BigInt.two == BigInt.zero ? biN - mod - BigInt.one : mod;
+  final BigInt biN = BigInt.from(n);
+  final BigInt group = k ~/ biN;
+  final BigInt mod = k % biN;
+  final BigInt position = group % BigInt.two == BigInt.zero ? biN - mod - BigInt.one : mod;
   return permutationWorker<T>(
     group,
     items.sublist(0, n - 1),
@@ -50,10 +50,10 @@ BigInt inversePermutationWorker<T>(List<T> permutation, List<T> items) {
   if (permutation.length == 1) {
     return BigInt.zero;
   }
-  int n = items.length;
-  BigInt biN = BigInt.from(n);
-  BigInt index = BigInt.from(permutation.indexOf(items.last));
-  BigInt group = inversePermutationWorker<T>(
+  final int n = items.length;
+  final BigInt biN = BigInt.from(n);
+  final BigInt index = BigInt.from(permutation.indexOf(items.last));
+  final BigInt group = inversePermutationWorker<T>(
     permutation.where((x) => x != items.last).toList(),
     items.sublist(0, items.length - 1),
   );
@@ -66,7 +66,7 @@ List<T> combination<T>(BigInt k, int r, List<T> items) {
   if (r == 0) {
     return <T>[];
   }
-  int n = items.length;
+  final int n = items.length;
   int position = 0;
   BigInt d = nCr(n - position - 1, r - 1);
   while (k >= d) {
@@ -74,10 +74,11 @@ List<T> combination<T>(BigInt k, int r, List<T> items) {
     position += 1;
     d = nCr(n - position - 1, r - 1);
   }
-  List<T> tail = items.sublist(position + 1);
+  final List<T> tail = items.sublist(position + 1);
   return <T>[
     items[position],
-  ]..addAll(combination<T>(k, r - 1, tail));
+    ...combination<T>(k, r - 1, tail),
+  ];
 }
 
 // Gives the index of `combination` in the ordered list of combinations of items taken from `items`.
@@ -86,8 +87,8 @@ BigInt inverseCombination<T>(List<T> combination, List<T> items) {
     if (combination.isEmpty) {
       return BigInt.zero;
     }
-    int r = combination.length;
-    int n = items.length;
+    final int r = combination.length;
+    final int n = items.length;
     int itemIndex = 0;
     BigInt k = BigInt.zero;
     while (combination[0] != items[itemIndex]) {
@@ -107,7 +108,7 @@ BigInt inverseCombination<T>(List<T> combination, List<T> items) {
 
 // Gives `k`th composition in the ordered list of compositions of `r` items taken from `items`.
 List<T> composition<T>(BigInt k, int r, List<T> items) {
-  int n = items.length;
+  final int n = items.length;
   int position = 0;
   BigInt d = nCr(n + r - position - 2, r - 1);
   while (k >= d) {
@@ -118,10 +119,11 @@ List<T> composition<T>(BigInt k, int r, List<T> items) {
   if (r == 0) {
     return <T>[];
   }
-  List<T> tail = items.sublist(position);
+  final List<T> tail = items.sublist(position);
   return <T>[
     items[position],
-  ]..addAll(composition<T>(k, r - 1, tail));
+    ...composition<T>(k, r - 1, tail),
+  ];
 }
 
 // Gives the index of `composition` in the ordered list of compositions of items taken from `items`.
@@ -130,8 +132,8 @@ BigInt inverseComposition<T>(List<T> composition, List<T> items) {
     if (composition.isEmpty) {
       return BigInt.zero;
     }
-    int n = items.length;
-    int r = composition.length;
+    final int n = items.length;
+    final int r = composition.length;
     int itemIndex = 0;
     BigInt k = BigInt.zero;
     while (composition[0] != items[itemIndex]) {
@@ -151,21 +153,21 @@ BigInt inverseComposition<T>(List<T> composition, List<T> items) {
 
 // Gives `k`th permutation in the ordered list of permutations of `r` items taken from `items`.
 List<T> permutation<T>(BigInt k, int r, List<T> items) {
-  BigInt f = fact(r);
-  BigInt group = k ~/ f;
-  BigInt item = k % f;
-  List<T> comb = combination<T>(group, r, items);
+  final BigInt f = fact(r);
+  final BigInt group = k ~/ f;
+  final BigInt item = k % f;
+  final List<T> comb = combination<T>(group, r, items);
   return permutationWorker<T>(item, comb);
 }
 
 // Gives the index of `permutation` in the ordered list of permutations of items taken from `items`.
 BigInt inversePermutation<T>(List<T> permutation, List<T> items) {
-  int r = permutation.length;
+  final int r = permutation.length;
   if (r == 0) {
     return BigInt.zero;
   }
-  List<T> sortedPermutation = sortedArrangement<T>(permutation, items);
-  BigInt group = inverseCombination<T>(sortedPermutation, items);
+  final List<T> sortedPermutation = sortedArrangement<T>(permutation, items);
+  final BigInt group = inverseCombination<T>(sortedPermutation, items);
   return group * fact(r) +
       inversePermutationWorker<T>(permutation, sortedPermutation);
 }
@@ -174,8 +176,8 @@ BigInt inversePermutation<T>(List<T> permutation, List<T> items) {
 List<T> amalgam<T>(BigInt k, int r, List<T> items) => List<T>.generate(
   r,
   (int index) {
-    BigInt p = BigInt.from(items.length).pow(r - index - 1);
-    int position = (k ~/ p).toInt();
+    final BigInt p = BigInt.from(items.length).pow(r - index - 1);
+    final int position = (k ~/ p).toInt();
     k %= p;
     return items[position];
   },
@@ -183,12 +185,11 @@ List<T> amalgam<T>(BigInt k, int r, List<T> items) => List<T>.generate(
 
 // Gives the index of `amalgam` in the ordered list of amalgams of items taken from `items`.
 BigInt inverseAmalgam<T>(List<T> amalgam, List<T> items) {
-  int r = amalgam.length;
-  BigInt n = BigInt.from(items.length);
-  List<BigInt> powers = List<BigInt>.filled(
+  final int r = amalgam.length;
+  final BigInt n = BigInt.from(items.length);
+  final List<BigInt> powers = List<BigInt>.filled(
     r,
     BigInt.one,
-    growable: false,
   );
   for (int index = 1; index < powers.length; index++) {
     powers[index] = powers[index - 1] * n;
@@ -203,7 +204,7 @@ BigInt inverseAmalgam<T>(List<T> amalgam, List<T> items) {
 // Gives `k`th subset in the ordered list of subsets of items taken from `items`.
 List<T> subset<T>(BigInt k, List<T> items) {
   k = adjustedIndex(k, BigInt.one << items.length);
-  List<T> r = <T>[];
+  final List<T> r = <T>[];
   for (int index = 0; index < items.length; index++) {
     if (k & (BigInt.one << index) != BigInt.zero) {
       r.add(items[index]);
@@ -233,10 +234,10 @@ BigInt inverseSubset<T>(List<T> subset, List<T> items) {
 
 // Gives `k`th compound in the ordered list of compounds of items taken from `items`.
 List<T> compound<T>(BigInt k, List<T> items) {
-  int n = items.length;
+  final int n = items.length;
   late int r;
   for (r = 0; r < n; r++) {
-    BigInt groupSize = nPr(n, r);
+    final BigInt groupSize = nPr(n, r);
     if (k >= groupSize) {
       k -= groupSize;
     } else {
@@ -252,8 +253,7 @@ BigInt inverseCompound<T>(List<T> compound, List<T> items) {
     compound.length,
     (int r) => nPr(items.length, r),
   ).fold<BigInt>(BigInt.zero, (a, b) => a + b);
-  k += inversePermutation<T>(compound, items);
-  return k;
+  return k += inversePermutation<T>(compound, items);
 }
 
 // Returns an index in the domain [0, n].

@@ -4,9 +4,9 @@ class TinyList<T> {
   late final List<T> originalItems;
   late final int? _r;
   late final BigInt _length;
-  late final _operatorSubscriptRef;
-  late final _containsRef;
-  late final _indexOfRef;
+  late final List<T> Function(BigInt) _operatorSubscriptRef;
+  late final bool Function(List<T>) _containsRef;
+  late final BigInt Function(List<T>) _indexOfRef;
 
   // A pseudo-list of combinations.
   //
@@ -129,7 +129,7 @@ class TinyList<T> {
   BigInt indexOf(List<T> arrangement, [BigInt? start]) {
     start ??= BigInt.zero;
     if (contains(arrangement)) {
-      BigInt result = _indexOfRef(arrangement);
+      final BigInt result = _indexOfRef(arrangement);
       if (result >= start) {
         return result;
       } else {
@@ -177,6 +177,7 @@ class TinyList<T> {
           sublist(BigInt.zero, BigInt.one) == other.sublist(BigInt.zero, BigInt.one) && //todo
           sublist(length - BigInt.one) == other.sublist(other.length - BigInt.one); //todo
 */
+  @override
   String toString() =>
       "Pseudo-list containing all $_length arrangements ($_r- of items from $originalItems)";
 }
