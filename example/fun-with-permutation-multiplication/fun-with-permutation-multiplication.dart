@@ -7,8 +7,7 @@ void main() {
   final TinyList<int> permutations = indices.permutation(indices.length);
 
   print("There are ${permutations.length} permutations of the digits 0-9.");
-  print(
-      "\nHere are the first, middle and last ten in the Johnson-Trotter ordering:\n");
+  print("\nHere are the first, middle and last ten in the Johnson-Trotter ordering:\n");
   print(row("Index", "Permutation", "Cyclic Notation", 10, 35));
 
   void table(BigInt start, BigInt end, [BigInt? mark]) {
@@ -66,11 +65,11 @@ String row(String col1, String col2, String col3, int w1, int w2) =>
     col1.padRight(w1) + col2.padRight(w2) + col3;
 
 List<int> interpret() {
-  var permutation = stdin.readLineSync();
+  final permutation = stdin.readLineSync();
   final split = permutation!
       .split(RegExp(r'[^0-9]'))
       .where((string) => string.isNotEmpty);
-  List<int> result = List<int>.from(indices);
+  final List<int> result = List<int>.from(indices);
   if (split.isNotEmpty) {
     for (final string in split) {
       final List<int> digits = string.split("").map((x) => int.parse(x)).toList();
@@ -84,8 +83,8 @@ List<int> interpret() {
 }
 
 String cyclic(List<int> permutation) {
-  Set<int> digits = <int>{};
-  var buffer = StringBuffer();
+  final Set<int> digits = <int>{};
+  final buffer = StringBuffer();
   for (int i = 0; i < 10; i++) {
     buffer.write('(');
     var j = i;
@@ -102,7 +101,7 @@ String cyclic(List<int> permutation) {
 }
 
 List<int> product(List<int> p, List<int> q) {
-  List<int> result = List<int>.from(indices);
+  final List<int> result = List<int>.from(indices);
   for (int i = 0; i < 10; i++) {
     result[i] = p[q[i]];
   }
@@ -111,5 +110,5 @@ List<int> product(List<int> p, List<int> q) {
 
 String display(List<int> permutation) {
   String spread(List<int> list) => list.map((x) => x.toString()).join(' ');
-  return spread(indices) + '\n' + spread(permutation);
+  return '${spread(indices)}\n${spread(permutation)}';
 }

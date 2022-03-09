@@ -14,8 +14,9 @@ void main() {
     "That's absurd",
     "Preposterous!",
   ];
-  final exclaim = () => dissent[rand.nextInt(dissent.length)];
-  final title = (List<String> names) => names.join('-') + ' ordering';
+
+  String exclaim() => dissent[rand.nextInt(dissent.length)];
+  String title(List<String> names) => '${names.join('-')} ordering';
 
   print('Gentlemen, I propose we call the ordering of permutations the ${title(perms[BigInt.zero])}.\n');
   for (final List<String> perm in perms.getRange(BigInt.zero, perms.length).skip(1)) {
