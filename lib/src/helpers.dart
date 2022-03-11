@@ -62,7 +62,8 @@ BigInt inversePermutationWorker<T>(List<T> permutation, List<T> items) {
 }
 
 // Gives `k`th combination in the ordered list of combinations of `r` items taken from `items`.
-List<T> combination<T>(BigInt k, int r, List<T> items) {
+List<T> combination<T>(BigInt kCombination, int r, List<T> items) {
+  BigInt k = kCombination;
   if (r == 0) {
     return <T>[];
   }
@@ -107,7 +108,8 @@ BigInt inverseCombination<T>(List<T> combination, List<T> items) {
 }
 
 // Gives `k`th composition in the ordered list of compositions of `r` items taken from `items`.
-List<T> composition<T>(BigInt k, int r, List<T> items) {
+List<T> composition<T>(BigInt kComposition, int r, List<T> items) {
+  BigInt k = kComposition;
   final int n = items.length;
   int position = 0;
   BigInt d = nCr(n + r - position - 2, r - 1);
@@ -152,7 +154,8 @@ BigInt inverseComposition<T>(List<T> composition, List<T> items) {
 }
 
 // Gives `k`th permutation in the ordered list of permutations of `r` items taken from `items`.
-List<T> permutation<T>(BigInt k, int r, List<T> items) {
+List<T> permutation<T>(BigInt kPermutation, int r, List<T> items) {
+  final BigInt k = kPermutation;
   final BigInt f = fact(r);
   final BigInt group = k ~/ f;
   final BigInt item = k % f;
@@ -173,15 +176,18 @@ BigInt inversePermutation<T>(List<T> permutation, List<T> items) {
 }
 
 // Gives `k`th amalgam in the ordered list of amalgams of `r` items taken from `items`.
-List<T> amalgam<T>(BigInt k, int r, List<T> items) => List<T>.generate(
-  r,
-  (int index) {
-    final BigInt p = BigInt.from(items.length).pow(r - index - 1);
-    final int position = (k ~/ p).toInt();
-    k %= p;
-    return items[position];
-  },
-);
+List<T> amalgam<T>(BigInt kAmalgam, int r, List<T> items) {
+  BigInt k = kAmalgam;
+  return List<T>.generate(
+    r,
+    (int index) {
+      final BigInt p = BigInt.from(items.length).pow(r - index - 1);
+      final int position = (k ~/ p).toInt();
+      k %= p;
+      return items[position];
+    },
+  );
+}
 
 // Gives the index of `amalgam` in the ordered list of amalgams of items taken from `items`.
 BigInt inverseAmalgam<T>(List<T> amalgam, List<T> items) {
@@ -202,8 +208,8 @@ BigInt inverseAmalgam<T>(List<T> amalgam, List<T> items) {
 }
 
 // Gives `k`th subset in the ordered list of subsets of items taken from `items`.
-List<T> subset<T>(BigInt k, List<T> items) {
-  k = adjustedIndex(k, BigInt.one << items.length);
+List<T> subset<T>(BigInt kSubset, List<T> items) {
+  BigInt k = adjustedIndex(kSubset, BigInt.one << items.length);
   final List<T> r = <T>[];
   for (int index = 0; index < items.length; index++) {
     if (k & (BigInt.one << index) != BigInt.zero) {
@@ -233,7 +239,8 @@ BigInt inverseSubset<T>(List<T> subset, List<T> items) {
 }
 
 // Gives `k`th compound in the ordered list of compounds of items taken from `items`.
-List<T> compound<T>(BigInt k, List<T> items) {
+List<T> compound<T>(BigInt kCompound, List<T> items) {
+  BigInt k = kCompound;
   final int n = items.length;
   late int r;
   for (r = 0; r < n; r++) {

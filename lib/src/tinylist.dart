@@ -159,7 +159,7 @@ class TinyList<T> {
   ).toList();
 
   Iterable<List<T>> getRange(BigInt start, BigInt end) sync* {
-    end = _checkValidRange(start, end);
+    _checkValidRange(start, end);
     BigInt index = start;
     do {
       yield this[adjustedIndex(index, _length)];
