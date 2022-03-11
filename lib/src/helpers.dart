@@ -7,7 +7,7 @@ BigInt fact(int n) {
     return factCache[n]!;
   }
   if (n < 2) {
-   return BigInt.one;
+    return BigInt.one;
   }
   return factCache[n] = BigInt.from(n) * fact(n - 1);
 }
@@ -19,7 +19,8 @@ BigInt nPr(int n, int r) => fact(n) ~/ fact(n - r);
 BigInt nCr(int n, int r) => nPr(n, r) ~/ fact(r);
 
 // Returns the items in `arrangement` in the same order as they appear in `items`.
-List<T> sortedArrangement<T>(List<T> arrangement, List<T> items) => (List<T>.of(arrangement))
+List<T> sortedArrangement<T>(List<T> arrangement, List<T> items) =>
+    (List<T>.of(arrangement))
       ..sort((x, y) => items.indexOf(x).compareTo(items.indexOf(y)));
 
 // Checks whether the items in `items` are unique.
@@ -38,7 +39,8 @@ List<T> permutationWorker<T>(BigInt k, List<T> items) {
   final BigInt biN = BigInt.from(n);
   final BigInt group = k ~/ biN;
   final BigInt mod = k % biN;
-  final BigInt position = group % BigInt.two == BigInt.zero ? biN - mod - BigInt.one : mod;
+  final BigInt position =
+      group % BigInt.two == BigInt.zero ? biN - mod - BigInt.one : mod;
   return permutationWorker<T>(
     group,
     items.sublist(0, n - 1),
@@ -96,11 +98,13 @@ BigInt inverseCombination<T>(List<T> combination, List<T> items) {
       k += nCr(n - itemIndex - 1, r - 1);
       itemIndex += 1;
     }
-    return k + helper(
-      combination.sublist(1),
-      items.sublist(itemIndex + 1),
-    );
+    return k +
+        helper(
+          combination.sublist(1),
+          items.sublist(itemIndex + 1),
+        );
   }
+
   return helper(
     sortedArrangement<T>(combination, items),
     items,
@@ -142,11 +146,13 @@ BigInt inverseComposition<T>(List<T> composition, List<T> items) {
       k += nCr(n + r - itemIndex - 2, r - 1);
       itemIndex += 1;
     }
-    return k + helper(
-      composition.sublist(1),
-      items.sublist(itemIndex),
-    );
+    return k +
+        helper(
+          composition.sublist(1),
+          items.sublist(itemIndex),
+        );
   }
+
   return helper(
     sortedArrangement<T>(composition, items),
     items,
@@ -202,7 +208,8 @@ BigInt inverseAmalgam<T>(List<T> amalgam, List<T> items) {
   }
   return List<BigInt>.generate(
     r,
-    (int position) => BigInt.from(items.indexOf(amalgam[position])) *
+    (int position) =>
+        BigInt.from(items.indexOf(amalgam[position])) *
         powers[r - position - 1],
   ).fold<BigInt>(BigInt.zero, (a, b) => a + b);
 }
@@ -232,6 +239,7 @@ BigInt inverseSubset<T>(List<T> subset, List<T> items) {
     }
     return k;
   }
+
   return helper(
     sortedArrangement<T>(subset.toSet().toList(), items),
     items,

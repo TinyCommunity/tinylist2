@@ -7,7 +7,8 @@ void main() {
   final TinyList<int> permutations = indices.permutation(indices.length);
 
   print("There are ${permutations.length} permutations of the digits 0-9.");
-  print("\nHere are the first, middle and last ten in the Johnson-Trotter ordering:\n");
+  print(
+      "\nHere are the first, middle and last ten in the Johnson-Trotter ordering:\n");
   print(row("Index", "Permutation", "Cyclic Notation", 10, 35));
 
   void table(BigInt start, BigInt end, [BigInt? mark]) {
@@ -72,7 +73,8 @@ List<int> interpret() {
   final List<int> result = List<int>.from(indices);
   if (split.isNotEmpty) {
     for (final string in split) {
-      final List<int> digits = string.split("").map((x) => int.parse(x)).toList();
+      final List<int> digits =
+          string.split("").map((x) => int.parse(x)).toList();
       final int length = digits.length;
       for (int i = 0; i < length; i++) {
         result[digits[i]] = digits[(i + 1) % length];

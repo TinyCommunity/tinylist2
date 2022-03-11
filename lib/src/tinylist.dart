@@ -18,12 +18,17 @@ class TinyList<T> {
       throw RangeError.range(_r!, 0, originalItems.length, "r");
     }
     if (!isListUnique(originalItems)) {
-      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
+      throw ArgumentError.value(
+          originalItems, "items", "Items are not unique.");
     }
     _length = nCr(originalItems.length, _r!);
-    _operatorSubscriptRef = (BigInt index) => combination(adjustedIndex(index, _length), _r!, originalItems);
-    _containsRef = (List<T> arrangement) => itemsExistInUniversal(arrangement, originalItems) && isListUnique(arrangement);
-    _indexOfRef = (List<T> arrangement) => inverseCombination(arrangement, originalItems);
+    _operatorSubscriptRef = (BigInt index) =>
+        combination(adjustedIndex(index, _length), _r!, originalItems);
+    _containsRef = (List<T> arrangement) =>
+        itemsExistInUniversal(arrangement, originalItems) &&
+        isListUnique(arrangement);
+    _indexOfRef =
+        (List<T> arrangement) => inverseCombination(arrangement, originalItems);
   }
 
   // A pseudo-list of permutations.
@@ -36,12 +41,17 @@ class TinyList<T> {
       throw RangeError.range(_r!, 0, originalItems.length, "r");
     }
     if (!isListUnique(originalItems)) {
-      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
+      throw ArgumentError.value(
+          originalItems, "items", "Items are not unique.");
     }
     _length = nPr(originalItems.length, _r!);
-    _operatorSubscriptRef = (BigInt index) => permutation(adjustedIndex(index, _length), _r!, originalItems);
-    _containsRef = (List<T> arrangement) => itemsExistInUniversal(arrangement, originalItems) && isListUnique(arrangement);
-    _indexOfRef = (List<T> arrangement) => inversePermutation(arrangement, originalItems);
+    _operatorSubscriptRef = (BigInt index) =>
+        permutation(adjustedIndex(index, _length), _r!, originalItems);
+    _containsRef = (List<T> arrangement) =>
+        itemsExistInUniversal(arrangement, originalItems) &&
+        isListUnique(arrangement);
+    _indexOfRef =
+        (List<T> arrangement) => inversePermutation(arrangement, originalItems);
   }
 
   // A pseudo-list of compositions (combinations with repetition).
@@ -54,12 +64,16 @@ class TinyList<T> {
       throw RangeError.range(_r!, 0, null, "r");
     }
     if (!isListUnique(originalItems)) {
-      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
+      throw ArgumentError.value(
+          originalItems, "items", "Items are not unique.");
     }
     _length = nCr(originalItems.length + _r! - 1, _r!);
-    _operatorSubscriptRef = (BigInt index) => composition(adjustedIndex(index, _length), _r!, originalItems);
-    _containsRef = (List<T> arrangement) => itemsExistInUniversal(arrangement, originalItems);
-    _indexOfRef = (List<T> arrangement) => inverseComposition(arrangement, originalItems);
+    _operatorSubscriptRef = (BigInt index) =>
+        composition(adjustedIndex(index, _length), _r!, originalItems);
+    _containsRef = (List<T> arrangement) =>
+        itemsExistInUniversal(arrangement, originalItems);
+    _indexOfRef =
+        (List<T> arrangement) => inverseComposition(arrangement, originalItems);
   }
 
   // A pseudo-list of amalgams (permutations with repetition).
@@ -73,12 +87,16 @@ class TinyList<T> {
       throw RangeError.range(_r!, 0, null, "r");
     }
     if (!isListUnique(originalItems)) {
-      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
+      throw ArgumentError.value(
+          originalItems, "items", "Items are not unique.");
     }
     _length = BigInt.from(originalItems.length).pow(_r!);
-    _operatorSubscriptRef = (BigInt index) => amalgam(adjustedIndex(index, _length), _r!, originalItems);
-    _containsRef = (List<T> arrangement) => itemsExistInUniversal(arrangement, originalItems);
-    _indexOfRef = (List<T> arrangement) => inverseAmalgam(arrangement, originalItems);
+    _operatorSubscriptRef = (BigInt index) =>
+        amalgam(adjustedIndex(index, _length), _r!, originalItems);
+    _containsRef = (List<T> arrangement) =>
+        itemsExistInUniversal(arrangement, originalItems);
+    _indexOfRef =
+        (List<T> arrangement) => inverseAmalgam(arrangement, originalItems);
   }
 
   // A pseudo-list of subsets.
@@ -88,12 +106,17 @@ class TinyList<T> {
     originalItems = List<T>.unmodifiable(items);
     _r = null;
     if (!isListUnique(originalItems)) {
-      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
+      throw ArgumentError.value(
+          originalItems, "items", "Items are not unique.");
     }
     _length = BigInt.one << originalItems.length;
-    _operatorSubscriptRef = (BigInt index) => subset(adjustedIndex(index, _length), originalItems);
-    _containsRef = (List<T> arrangement) => itemsExistInUniversal(arrangement, originalItems) && isListUnique(arrangement);
-    _indexOfRef = (List<T> arrangement) => inverseSubset(arrangement, originalItems);
+    _operatorSubscriptRef =
+        (BigInt index) => subset(adjustedIndex(index, _length), originalItems);
+    _containsRef = (List<T> arrangement) =>
+        itemsExistInUniversal(arrangement, originalItems) &&
+        isListUnique(arrangement);
+    _indexOfRef =
+        (List<T> arrangement) => inverseSubset(arrangement, originalItems);
   }
 
   // A pseudo-list of compounds.
@@ -104,15 +127,20 @@ class TinyList<T> {
     originalItems = List<T>.unmodifiable(items);
     _r = null;
     if (!isListUnique(originalItems)) {
-      throw ArgumentError.value(originalItems, "items", "Items are not unique.");
+      throw ArgumentError.value(
+          originalItems, "items", "Items are not unique.");
     }
     _length = List<BigInt>.generate(
       items.length + 1,
       (int r) => nPr(originalItems.length, r),
     ).fold<BigInt>(BigInt.zero, (a, b) => a + b);
-    _operatorSubscriptRef = (BigInt index) => compound(adjustedIndex(index, _length), originalItems);
-    _containsRef = (List<T> arrangement) => itemsExistInUniversal(arrangement, originalItems) && isListUnique(arrangement);
-    _indexOfRef = (List<T> arrangement) => inverseCompound(arrangement, originalItems);
+    _operatorSubscriptRef = (BigInt index) =>
+        compound(adjustedIndex(index, _length), originalItems);
+    _containsRef = (List<T> arrangement) =>
+        itemsExistInUniversal(arrangement, originalItems) &&
+        isListUnique(arrangement);
+    _indexOfRef =
+        (List<T> arrangement) => inverseCompound(arrangement, originalItems);
   }
 
   // The number of items taken from `items`
@@ -142,11 +170,13 @@ class TinyList<T> {
 
   BigInt _checkValidRange(BigInt start, BigInt? end) {
     if (BigInt.zero > start || start > _length) {
-      throw RangeError("${start.toString()} is smaller than zero or larger than length.");
+      throw RangeError(
+          "${start.toString()} is smaller than zero or larger than length.");
     }
     if (end != null) {
       if (start > end || end > _length) {
-        throw RangeError("${start.toString()} is larger than ${end.toString()} or ${end.toString()} is larger than length.");
+        throw RangeError(
+            "${start.toString()} is larger than ${end.toString()} or ${end.toString()} is larger than length.");
       }
       return end;
     }
@@ -154,17 +184,19 @@ class TinyList<T> {
   }
 
   List<List<T>> sublist(BigInt start, [BigInt? end]) => getRange(
-    start,
-    _checkValidRange(start, end),
-  ).toList();
+        start,
+        _checkValidRange(start, end),
+      ).toList();
 
   Iterable<List<T>> getRange(BigInt start, BigInt end) sync* {
     _checkValidRange(start, end);
     BigInt index = start;
     do {
       yield this[adjustedIndex(index, _length)];
-    } while (adjustedIndex(index += BigInt.one, _length) != adjustedIndex(end, _length));
+    } while (adjustedIndex(index += BigInt.one, _length) !=
+        adjustedIndex(end, _length));
   }
+
 /*
   @override
   bool operator ==(Object other) =>

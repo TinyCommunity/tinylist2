@@ -62,7 +62,9 @@ void main() {
         () {
           expect(
             combos.sublist(BigInt.from(4), BigInt.from(5)),
-            [["a", "c", "e"]],
+            [
+              ["a", "c", "e"]
+            ],
           );
         },
       );
@@ -131,11 +133,15 @@ void main() {
         () {
           expect(
             perms.sublist(BigInt.from(24), BigInt.from(25)),
-            [["a", "c", "e"]],
+            [
+              ["a", "c", "e"]
+            ],
           );
           expect(
             perms.sublist(BigInt.from(27), BigInt.from(28)),
-            [["e", "c", "a"]],
+            [
+              ["e", "c", "a"]
+            ],
           );
         },
       );
@@ -200,7 +206,9 @@ void main() {
         () {
           expect(
             compos.sublist(BigInt.from(11), BigInt.from(12)),
-            [["a", "c", "e"]],
+            [
+              ["a", "c", "e"]
+            ],
           );
         },
       );
@@ -269,11 +277,15 @@ void main() {
         () {
           expect(
             amals.sublist(BigInt.from(14), BigInt.from(15)),
-            [["a", "c", "e"]],
+            [
+              ["a", "c", "e"]
+            ],
           );
           expect(
             amals.sublist(BigInt.from(110), BigInt.from(111)),
-            [["e", "c", "a"]],
+            [
+              ["e", "c", "a"]
+            ],
           );
         },
       );
@@ -350,15 +362,21 @@ void main() {
         () {
           expect(
             subs.sublist(BigInt.from(4), BigInt.from(5)),
-            [["c"]],
+            [
+              ["c"]
+            ],
           );
           expect(
             subs.sublist(BigInt.from(21), BigInt.from(22)),
-            [["a", "c", "e"]],
+            [
+              ["a", "c", "e"]
+            ],
           );
           expect(
             subs.sublist(BigInt.from(31), BigInt.from(32)),
-            [["a", "b", "c", "d", "e"]],
+            [
+              ["a", "b", "c", "d", "e"]
+            ],
           );
         },
       );
@@ -435,15 +453,21 @@ void main() {
         () {
           expect(
             comps.sublist(BigInt.from(3), BigInt.from(4)),
-            [["c"]],
+            [
+              ["c"]
+            ],
           );
           expect(
             comps.sublist(BigInt.from(50), BigInt.from(51)),
-            [["a", "c", "e"]],
+            [
+              ["a", "c", "e"]
+            ],
           );
           expect(
             comps.sublist(BigInt.from(206), BigInt.from(207)),
-            [["a", "b", "c", "d", "e"]],
+            [
+              ["a", "b", "c", "d", "e"]
+            ],
           );
         },
       );

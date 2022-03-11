@@ -18,8 +18,10 @@ void main() {
   String exclaim() => dissent[rand.nextInt(dissent.length)];
   String title(List<String> names) => '${names.join('-')} ordering';
 
-  print('Gentlemen, I propose we call the ordering of permutations the ${title(perms[BigInt.zero])}.\n');
-  for (final List<String> perm in perms.getRange(BigInt.zero, perms.length).skip(1)) {
+  print(
+      'Gentlemen, I propose we call the ordering of permutations the ${title(perms[BigInt.zero])}.\n');
+  for (final List<String> perm
+      in perms.getRange(BigInt.zero, perms.length).skip(1)) {
     print("${exclaim()} It should be the ${title(perm)}!");
   }
   print("\nOkay then... we'll vote on it!");
