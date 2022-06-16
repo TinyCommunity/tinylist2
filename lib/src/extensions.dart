@@ -1,83 +1,16 @@
-part of tinylist2;
+import 'tinylist.dart';
 
-/// Convenience methods to create combinatorics instances from
-/// lists of strings.
-extension TrotterListStringCandy on List<String> {
-  Amalgams<String> amalgams([int? take]) {
-    take = take ?? this.length;
-    return Amalgams<String>(take, this);
-  }
+// Convenience methods to create combinatorics instances from any lists.
+extension TinyListExtensions<T> on List<T> {
+  TinyList<T> combination(int r) => TinyList<T>.combination(this, r);
 
-  Combinations<String> combinations([int? take]) {
-    take = take ?? this.length;
-    return Combinations<String>(take, this);
-  }
+  TinyList<T> permutation(int r) => TinyList<T>.permutation(this, r);
 
-  Compositions<String> compositions([int? take]) {
-    take = take ?? this.length;
-    return Compositions<String>(take, this);
-  }
+  TinyList<T> composition(int r) => TinyList<T>.composition(this, r);
 
-  Compounds<String> compounds() => Compounds<String>(this);
+  TinyList<T> amalgam(int r) => TinyList<T>.amalgam(this, r);
 
-  Permutations<String> permutations([int? take]) {
-    take = take ?? this.length;
-    return Permutations<String>(take, this);
-  }
+  TinyList<T> subset() => TinyList<T>.subset(this);
 
-  Subsets<String> subsets() => Subsets<String>(this);
-}
-
-/// Convenience methods to create combinatorics instances from
-/// lists of nums.
-extension TrotterListNumCandy on List<num> {
-  Amalgams<num> amalgams([int? take]) {
-    take = take ?? this.length;
-    return Amalgams<num>(take, this);
-  }
-
-  Combinations<num> combinations([int? take]) {
-    take = take ?? this.length;
-    return Combinations<num>(take, this);
-  }
-
-  Compositions<num> compositions([int? take]) {
-    take = take ?? this.length;
-    return Compositions<num>(take, this);
-  }
-
-  Compounds<num> compounds() => Compounds<num>(this);
-
-  Permutations<num> permutations([int? take]) {
-    take = take ?? this.length;
-    return Permutations<num>(take, this);
-  }
-
-  Subsets<num> subsets() => Subsets<num>(this);
-}
-
-extension TrotterStringCandy on String {
-  Amalgams<String> amalgams([int? take]) {
-    take = take ?? this.length;
-    return Amalgams<String>(take, characters(this));
-  }
-
-  Combinations<String> combinations([int? take]) {
-    take = take ?? this.length;
-    return Combinations<String>(take, characters(this));
-  }
-
-  Compositions<String> compositions([int? take]) {
-    take = take ?? this.length;
-    return Compositions<String>(take, characters(this));
-  }
-
-  Compounds<String> compounds() => Compounds<String>(characters(this));
-
-  Permutations<String> permutations([int? take]) {
-    take = take ?? this.length;
-    return Permutations<String>(take, characters(this));
-  }
-
-  Subsets<String> subsets() => Subsets<String>(characters(this));
+  TinyList<T> compound() => TinyList<T>.compound(this);
 }
