@@ -5,7 +5,7 @@
 ### Changed
 * Forked as a community version with new name `tinylist2`
 * Null safety migration
-* Library restructure at [PR #1]()
+* Restructure library to combine classes into `TinyList` at [PR #6](https://github.com/TinyCommunity/tinylist2/pull/6)
 
 ## [1.2.0]
 
