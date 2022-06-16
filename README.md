@@ -762,6 +762,52 @@ The last compound is [b, a, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t
 
 Unless you're immortal, don't use `comps().last` to access the last compound in the previous example!
 
+## Methods
+
+### Properties
+
+#### `.r`
+
+Return the number of items taken from `items` in `int?`.
+
+#### `.length`
+
+Return the number of arrangements 'contained' in this pseudo-list in `BigInt`.
+
+### Utilities
+
+#### `[]`
+
+Return `List<T>` at index given.
+
+#### `.contains()`
+
+Return `bool` on whether the structure contains `arrangement`.
+
+#### `.indexOf()`
+
+Return index of `arrangement` in `BigInt`.
+
+#### `.sublist()`
+
+Return `List<List<T>>` based on `start` (and `end`) given.
+
+```dart
+final BigInt start = BigInt.zero;
+final BigInt? end = BigInt.two;
+final List<List<T>> newList = list.sublist(start, end);
+```
+
+#### `.getRange()`
+
+Return `Iterable<List<T>>` based on `start` and `end` given.
+
+```dart
+final BigInt start = BigInt.zero;
+final BigInt end = BigInt.two;
+final Iterable<List<T>> newList = list.getRange(start, end);
+```
+
 ## Extensions
 
 ### `List<T>`
