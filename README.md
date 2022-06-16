@@ -730,10 +730,10 @@ For example, consider the number of 10-permutations of the letters of the alphab
 
 ```dart
 final List<String> largeBagOfItems = <String>["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-final perms = Permutations(10, largeBagOfItems);
+final TinyList<String> perms = TinyList.permutation(largeBagOfItems, 10);
 print(perms);
 final List<String> permutationOfInterest = <String>["a", "l", "g", "o", "r", "i", "t", "h", "m", "s"];
-BigInt index = perms.indexOf(permutationOfInterest);
+final BigInt index = perms.indexOf(permutationOfInterest);
 print('The index of $permutationOfInterest is $index.');
 print('perms[$index]: ${perms[index]}');
 ```
@@ -749,9 +749,9 @@ Wow! That's a lot of permutations! Don't iterate over them all! That's almost se
 Luckily we didn't need to perform that search using brute force! (Take that, Mathematica!)
 
 ```dart
-final comps = Compounds(largeBagOfItems);
+final TinyList<String> comps = TinyList.compound(largeBagOfItems);
 print('There are ${comps.length} compounds of these letters!');
-BigInt lastCompoundIndex = comps.length - BigInt.one;
+final BigInt lastCompoundIndex = comps.length - BigInt.one;
 print('The last compound is ${comps[lastCompoundIndex]}.');
 ```
 
@@ -759,8 +759,6 @@ print('The last compound is ${comps[lastCompoundIndex]}.');
 There are 1096259850353149530222034277 compounds of these letters!
 The last compound is [b, a, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
 ```
-
-Unless you're immortal, don't use `comps().last` to access the last compound in the previous example!
 
 ## Methods
 
