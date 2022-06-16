@@ -22,19 +22,19 @@ The following pseudo-list classes are available:
 import 'package:tinylist2/tinylist2.dart';
 ```
 
-## Classes
+## Constructors
 
 ### Combinations
 
 A *combination* is a selection of items for which order is *not* important and items are *not* replaced after being selected.
 
-The `Combinations` class 'contains' all combinations of a set of items.
+`TinyList<T>.combination()` 'contains' all combinations of a set of items.
 
 ```dart
 final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
-final combos = Combinations(3, bagOfItems);
-for (final combo in combos()) {
-  print(combo);
+final TinyList<String> combos = TinyList.combination(bagOfItems, 3);
+for (final combo in combos.getRange(BigInt.zero, combos.length)) {
+  print('$combo (${combos.indexOf(combo)})');
 }
 ```
 
@@ -56,13 +56,13 @@ for (final combo in combos()) {
 
 A *permutation* is a selection of items for which order *is* important and items are *not* replaced after being selected.
 
-The `Permutations` class 'contains' all permutations of a set of items.
+`TinyList<T>.permutation()` 'contains' all permutations of a set of items.
 
 ```dart
 final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
-final perms = Permutations(3, bagOfItems);
-for (final perm in perms()) {
-  print(perm);
+final TinyList<String> perms = TinyList.permutation(bagOfItems, 3);
+for (final perm in perms.getRange(BigInt.zero, perms.length)) {
+  print('$perm (${perms.indexOf(perm)})');
 }
 ```
 
@@ -136,13 +136,13 @@ Note: that this library arranges permutations similarly to the way [Steinhaus-Jo
 
 A *composition* (or combination with replacement) is a selection of items for which order is *not* important and items *are* replaced after being selected.
 
-The `Compositions` class 'contains' all compositions of a set of items.
+`TinyList<T>.composition` 'contains' all compositions of a set of items.
 
 ```dart
 final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
-final comps = Compositions(3, bagOfItems);
-for (final comp in comps()) {
-  print(comp);
+final TinyList<String> compos = TinyList.composition(bagOfItems, 3);
+for (final compo in compos.getRange(BigInt.zero, compos.length)) {
+  print('$compo (${compos.indexOf(compo)})');
 }
 ```
 
@@ -189,13 +189,13 @@ for (final comp in comps()) {
 
 An *amalgam* (or permutation with replacement) is a selection of items for which order *is* important and items *are* replaced after being selected.
 
-The `Amalgams` class 'contains' all amalgams of a set of items.
+`TinyList<T>.amalgam()` 'contains' all amalgams of a set of items.
 
 ```dart
 final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
-final amals = Amalgams(3, bagOfItems);
-for (final amal in amals()) {
-  print(amal);
+final TinyList<String> amals = TinyList.amalgam(bagOfItems, 3);
+for (final amal in amals.getRange(BigInt.zero, amals.length)) {
+  print('$amal (${amals.indexOf(amal)})');
 }
 ```
 
@@ -332,13 +332,13 @@ for (final amal in amals()) {
 
 A *subset* (or combination of unspecified length) is a selection of items for which order is *not* important, items are *not* replaced and the number of items is not specified.
 
-The `Subsets` class 'contains' all subsets of a set of items.
+`TinyList<T>.subset()` 'contains' all subsets of a set of items.
 
 ```dart
 final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
-final subs = Subsets(bagOfItems);
-for (final sub in subs()) {
-  print(sub);
+final TinyList<String> subs = TinyList.subset(bagOfItems);
+for (final sub in subs.getRange(BigInt.zero, subs.length)) {
+  print('$sub (${subs.indexOf(sub)})');
 }
 ```
 
@@ -382,13 +382,13 @@ for (final sub in subs()) {
 
 A *compound* (or permutation of unspecified length) is a selection of items for which order *is* important, items are *not* replaced and the number of items is not specified.
 
-The `Compounds` class 'contains' all compounds of a set of items.
+`TinyList<T>.compound()` 'contains' all compounds of a set of items.
 
 ```dart
 final List<String> bagOfItems = <String>["a", "b", "c", "d", "e"];
-final comps = Compounds(bagOfItems);
-for (final comp in comps()) {
-  print(comp);
+final TinyList<String> comps = TinyList.compound(bagOfItems);
+for (final comp in comps.getRange(BigInt.zero, comps.length)) {
+  print('$comp (${comps.indexOf(comp)})');
 }
 ```
 
