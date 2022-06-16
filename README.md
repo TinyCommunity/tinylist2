@@ -810,15 +810,14 @@ final Iterable<List<T>> newList = list.getRange(start, end);
 
 ## Extensions
 
+`tinylist2` provides extensions that allow us to generate combinatoric arrangements directly from lists...
+
 ### `List<T>`
 
-`tinylist2` provides extensions that allow us to generate combinatoric
-arrangements directly from lists...
-
 ```dart
-final subsets = [1, 2, 3, 4, 5].subsets();
-for (final subset in subsets()) {
-  print(subset);
+final TinyList<int> subs = <int>[1, 2, 3, 4, 5].subset();
+for (final sub in subs.getRange(BigInt.zero, subs.length)) {
+  print('$sub (${subs.indexOf(sub)})');
 }
 ```
 
@@ -855,51 +854,4 @@ for (final subset in subsets()) {
 [1, 3, 4, 5]
 [2, 3, 4, 5]
 [1, 2, 3, 4, 5]
-```
-
-### `String`
-
-... and strings, in which case it assumes we mean arrangements of the
-characters in the string.
-
-```dart
-final subsets = 'abcde'.subsets();
-for (final subset in subsets()) {
-  print(subset);
-}
-```
-
-```
-[]
-[a]
-[b]
-[a, b]
-[c]
-[a, c]
-[b, c]
-[a, b, c]
-[d]
-[a, d]
-[b, d]
-[a, b, d]
-[c, d]
-[a, c, d]
-[b, c, d]
-[a, b, c, d]
-[e]
-[a, e]
-[b, e]
-[a, b, e]
-[c, e]
-[a, c, e]
-[b, c, e]
-[a, b, c, e]
-[d, e]
-[a, d, e]
-[b, d, e]
-[a, b, d, e]
-[c, d, e]
-[a, c, d, e]
-[b, c, d, e]
-[a, b, c, d, e]
 ```
